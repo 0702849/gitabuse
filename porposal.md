@@ -13,9 +13,9 @@
 
 ## Nice to Have
     - more than 3 levels
-    - projectile path
+    - bullet tracers
     - animation
     - functioning upgrades per tower
     - more enemy types
     - more buff towers + defense tower that blocks lane until destroyed
-    
+
