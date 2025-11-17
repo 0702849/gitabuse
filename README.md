@@ -1,2 +1,2 @@
 # gitabuse
-no, yes, no.
+currently thinking about it
