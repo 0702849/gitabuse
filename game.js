@@ -12,6 +12,4 @@ function setup() {
 
 function draw() {
   background(220);
-  fill("red");
-  circle(mouseX, mouseY, 20);
 }

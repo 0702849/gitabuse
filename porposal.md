@@ -19,3 +19,8 @@
     - more enemy types
     - more buff towers + defense tower that blocks lane until destroyed
 
+## Priority
+    - start and level select screens
+    - maps
+    - enemies
+    - towers
