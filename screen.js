@@ -14,16 +14,28 @@ let levelThree;
 function buttons(){
     //start button
   startButton = createButton("start");
-  startButton.position(width / 2, width / 2);
+  startButton.position(windowWidth / 2, windowWidth / 2);
   startButton.mousePressed(stateUpdate);
-  startButton.hide();
 
+  levelOne = createButton("Level One");
+  levelOne.position(windowWidth/2 - 20, windowWidth/2);
+  levelOne.mousePressed(stateUpdate);
+  levelOne.hide();
 
 }
 
 function stateUpdate() {
     if(startButton.mousePressed){
         gameState = "level select";
+        startButton.hide();
+        stateWorks(gameState);
+        console.log(gameState);
+    }
+    if(levelOne.mousePressed){
+        gameState = "start";
+        levelOne.hide();
+        stateWorks(gameState);
+        console.log(gameState);
     }
 }
 
@@ -32,7 +44,6 @@ function stateWorks(gameState) {
         startButton.show();
     }
     if(gameState === "level select"){
-        
+        levelOne.show();
     }
-
 }
