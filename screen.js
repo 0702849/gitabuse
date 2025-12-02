@@ -2,7 +2,7 @@
 
 // -- state variables --
 
-let gameState = "start";
+let gameState;
 
 // -- button --
 //use createButton function
@@ -14,36 +14,35 @@ let levelThree;
 function buttons(){
     //start button
   startButton = createButton("start");
-  startButton.position(windowWidth / 2, windowWidth / 2);
+  startButton.position(windowWidth / 2);
   startButton.mousePressed(stateUpdate);
 
+    //level one button
   levelOne = createButton("Level One");
-  levelOne.position(windowWidth/2 - 20, windowWidth/2);
+//   levelOne.position(windowWidth/2 - 20);
   levelOne.mousePressed(stateUpdate);
-  levelOne.hide();
 
 }
 
 function stateUpdate() {
     if(startButton.mousePressed){
         gameState = "level select";
-        startButton.hide();
-        stateWorks(gameState);
-        console.log(gameState);
+        stateWorks("level select");
     }
     if(levelOne.mousePressed){
         gameState = "start";
-        levelOne.hide();
-        stateWorks(gameState);
-        console.log(gameState);
+        stateWorks("start");
     }
+    console.log(gameState);
 }
 
-function stateWorks(gameState) {
-    if(gameState === "start"){
-        startButton.show();
+function stateWorks(_gameState) {
+    if(_gameState === "start");{
+        levelOne.hide();
     }
-    if(gameState === "level select"){
+    if(_gameState === "level select"){
+        startButton.hide();
         levelOne.show();
     }
 }
+
