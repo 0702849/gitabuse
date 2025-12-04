@@ -9,6 +9,7 @@
 function setup() {
   createCanvas(windowWidth, windowHeight);
   buttons();
+  stateFunction();
 }
 
 function draw() {

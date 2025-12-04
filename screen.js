@@ -2,7 +2,7 @@
 
 // -- state variables --
 
-let gameState;
+let gameState = "start";
 
 // -- button --
 //use createButton function
@@ -17,7 +17,28 @@ function buttons(){
     startButton.position(width/2, width/2);
     startButton.mouseClicked(stateUpdate);
     //level one button
-    levelOne = createButton("level one");
-    startButton.position(width/2 - 50/ width/2);
+    // levelOne = createButton("level one");
+    // startButton.position(width/2 - 50/ width/2);
 }
 
+function stateUpdate(){
+    if(startButton.mouseClicked){
+        gameState = "level select";
+    }
+    // if(levelOne.mouseClicked){
+    //     gameState = "game";
+    // }
+    cosole.log(gameState);
+}
+
+function stateFunction(){
+    if(gameState = "start"){
+        startButton.show();
+        // levelOne.hide();
+    }
+    if(gameState = "level select"){
+        // levelOne.show();
+        startButton.hide();
+    }
+
+}
