@@ -18,6 +18,7 @@
     - functioning upgrades per tower
     - more enemy types
     - more buff towers + defense tower that blocks lane until destroyed
+    - 2x speed button
 
 ## Priority
     - start and level select screens

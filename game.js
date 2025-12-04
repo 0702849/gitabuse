@@ -8,7 +8,6 @@
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  stateWorks("start");
   buttons();
 }
 
