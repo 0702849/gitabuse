@@ -12,33 +12,43 @@ let levelTwo;
 let levelThree;
 
 function buttons(){
+    console.log(gameState);
     //start button
     startButton = createButton("start");
-    startButton.position(width/2, width/2);
+    //level buttons
+    levelOne = createButton("level one");
+    levelTwo = createButton("level two");
+    levelThree = createButton("level three");
+
+    levelOne.hide();
+    levelTwo.hide();
+    levelThree.hide();
+        
     startButton.mouseClicked(stateUpdate);
-    //level one button
-    // levelOne = createButton("level one");
-    // startButton.position(width/2 - 50/ width/2);
 }
 
 function stateUpdate(){
     if(startButton.mouseClicked){
         gameState = "level select";
+        startButton.hide();
+        stateFunction();
     }
-    // if(levelOne.mouseClicked){
-    //     gameState = "game";
-    // }
-    cosole.log(gameState);
+    else if(levelOne.mouseClicked){
+        gameState = "game"
+        levelOne.hide();
+        stateFunction();
+    }
+    console.log(gameState);
 }
 
 function stateFunction(){
-    if(gameState = "start"){
-        startButton.show();
-        // levelOne.hide();
-    }
     if(gameState = "level select"){
-        // levelOne.show();
-        startButton.hide();
+        levelOne.show();
+        levelTwo.show();
+        levelThree.show();
+        rect(width/2, width/2, 20, 30);
     }
-
+    else if(gameState = "game"){
+        circle(width/2, width/2, 50);
+    }
 }
