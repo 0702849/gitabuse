@@ -31,24 +31,31 @@ function stateUpdate(){
     if(startButton.mouseClicked){
         gameState = "level select";
         startButton.hide();
-        stateFunction();
+        levelOne.show();
+        levelTwo.show();
+        levelThree.show();
     }
-    else if(levelOne.mouseClicked){
+    else if(levelOne.mouseClicked || levelTwo.mouseClicked || levelThree.mouseClicked){
         gameState = "game"
         levelOne.hide();
-        stateFunction();
+        levelTwo.hide();
+        levelThree.hide();
     }
+
     console.log(gameState);
 }
 
 function stateFunction(){
-    if(gameState = "level select"){
-        levelOne.show();
-        levelTwo.show();
-        levelThree.show();
-        rect(width/2, width/2, 20, 30);
+    if(gameState === "start"){
+        fill("yellow")
+            triangle(width/2, width/2, 30, 30, 30, 30);
     }
-    else if(gameState = "game"){
+    else if(gameState === "level select"){
+        fill("red");
+        rect(width/2, width/2, 50, 30);
+    }
+    else if(gameState === "game"){
+        fill("blue");
         circle(width/2, width/2, 50);
     }
 }
