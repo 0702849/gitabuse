@@ -11,11 +11,15 @@ let levelOne;
 let levelTwo;
 let levelThree;
 
-function buttons(){
+function beginButtons(){
     console.log(gameState);
     //start button
     startButton = createButton("start");
     //level buttons
+    startButton.mouseClicked(stateToLevelSelect);
+}
+
+function levelButton(){
     levelOne = createButton("level one");
     levelTwo = createButton("level two");
     levelThree = createButton("level three");
@@ -23,11 +27,13 @@ function buttons(){
     levelOne.hide();
     levelTwo.hide();
     levelThree.hide();
-        
-    startButton.mouseClicked(stateUpdate);
+    
+    levelOne.mouseClicked(stateToGame);
+    levelTwo.mouseClicked(stateToGame);
+    levelThree.mouseClicked(stateToGame);
 }
 
-function stateUpdate(){
+function stateToLevelSelect(){
     if(startButton.mouseClicked){
         gameState = "level select";
         startButton.hide();
@@ -35,15 +41,20 @@ function stateUpdate(){
         levelTwo.show();
         levelThree.show();
     }
-    else if(levelOne.mouseClicked || levelTwo.mouseClicked || levelThree.mouseClicked){
-        gameState = "game"
-        levelOne.hide();
-        levelTwo.hide();
-        levelThree.hide();
+    
+    console.log(gameState);
+}
+function stateToGame(){
+    if(levelOne.mouseClicked || levelTwo.mouseClicked || levelThree.mouseClicked){
+    gameState = "game"
+    levelOne.hide();
+    levelTwo.hide();
+    levelThree.hide();
     }
 
     console.log(gameState);
 }
+
 
 function stateFunction(){
     if(gameState === "start"){

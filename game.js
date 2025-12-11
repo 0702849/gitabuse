@@ -8,7 +8,8 @@
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  buttons();
+  beginButtons();
+  levelButton();
 }
 
 function draw() {
