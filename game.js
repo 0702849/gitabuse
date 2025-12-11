@@ -8,6 +8,9 @@
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+
+  console.log(gameState);
+
   beginButtons();
   levelButton();
 }

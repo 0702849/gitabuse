@@ -1,39 +1,60 @@
 //levels and start screens
 
+// -- constants --
+const BUTTONOFFSET = 200;
 // -- state variables --
 
 let gameState = "start";
 
-// -- button --
-//use createButton function
+// -- buttons --
+//use createButton function to make the buttons
 let startButton;
 let levelOne;
 let levelTwo;
 let levelThree;
 
 function beginButtons(){
-    console.log(gameState);
-    //start button
     startButton = createButton("start");
-    //level buttons
+    startButton.position(width/2, width/2);     //put it in the middle of the screen
     startButton.mouseClicked(stateToLevelSelect);
 }
 
 function levelButton(){
+    //create level one button
     levelOne = createButton("level one");
+    levelOne.position(width/2 - BUTTONOFFSET, width/2);
+    //create level two button
     levelTwo = createButton("level two");
+    levelTwo.position(width/2,width/2);
+    //create level three button
     levelThree = createButton("level three");
+    levelThree.position(width/2 + BUTTONOFFSET, width/2);
 
+    //hide them after initialization
     levelOne.hide();
     levelTwo.hide();
     levelThree.hide();
     
-    levelOne.mouseClicked(stateToGame);
-    levelTwo.mouseClicked(stateToGame);
-    levelThree.mouseClicked(stateToGame);
+    //if clicked change state to "game"
+    levelOne.mouseClicked(gameToOne);
+    levelTwo.mouseClicked(gameToTwo);
+    levelThree.mouseClicked(gameToThree);
+}
+
+function stateToStart(){
+    //when called only show the start button and change state back to start
+    gameState = "start";
+    startButton.show();
+
+    levelOne.hide();
+    levelTwo.hide();
+    levelThree.hide();
+
+    console.log(gameState);
 }
 
 function stateToLevelSelect(){
+    //when start button clicked enter level select menu
     if(startButton.mouseClicked){
         gameState = "level select";
         startButton.hide();
@@ -44,29 +65,62 @@ function stateToLevelSelect(){
     
     console.log(gameState);
 }
-function stateToGame(){
-    if(levelOne.mouseClicked || levelTwo.mouseClicked || levelThree.mouseClicked){
-    gameState = "game"
-    levelOne.hide();
-    levelTwo.hide();
-    levelThree.hide();
-    }
 
+
+// -- level state change--
+function gameToOne(){
+    if(levelOne.mouseClicked){
+        gameState = "gameOne";
+    }
+    console.log(gameState);
+}
+function gameToTwo(){
+    if(levelTwo.mouseClicked){
+        gameState = "gameTwo";
+    }
+    console.log(gameState);
+}
+function gameToThree(){
+    if(levelThree.mouseClicked){
+        gameState = "gameThree";
+    }
     console.log(gameState);
 }
 
 
+function keyPressed(){
+    if(keyCode = 82){
+        //if "r" or "R" key pressed return to "start" state
+        stateToStart();
+    }
+}
+
+
+//what does each state do or call
 function stateFunction(){
+    // -- menus --
     if(gameState === "start"){
+        //start menu
         fill("yellow")
-            triangle(width/2, width/2, 30, 30, 30, 30);
+        rect(width/2, width/2 - 200, 100);
     }
     else if(gameState === "level select"){
+        //level select menu
         fill("red");
-        rect(width/2, width/2, 50, 30);
+        rect(width/2, width/2 - 200, 50, 30);
     }
-    else if(gameState === "game"){
+
+    // -- level vers --
+    else if(gameState === "gameOne"){
         fill("blue");
-        circle(width/2, width/2, 50);
+        circle(width/2, width/2 - BUTTONOFFSET, 50);
+    }
+    else if(gameState === "gameTwo"){
+        fill("red");
+        circle(width/2, width/2 - BUTTONOFFSET, 50);
+    }
+    else if(gameState === "gameThree"){
+        fill("green");
+        circle(width/2, width/2 - BUTTONOFFSET, 50);
     }
 }
