@@ -1,7 +1,10 @@
 //levels and start screens
 
+let currentMap = [];
+
 // -- constants --
 const BUTTONOFFSET = 200;
+const CELLSIZE = 50
 // -- state variables --
 
 let gameState = "start";
@@ -125,6 +128,7 @@ function stateFunction(){
     else if(gameState === "gameOne"){
         fill("blue");
         circle(width/2, width/2 - BUTTONOFFSET, 50);
+        mapWorks("gameOne");
     }
     else if(gameState === "gameTwo"){
         fill("red");
@@ -147,6 +151,14 @@ function mapWorks(level){
         // - 2: placeable ground
         // - 3: enemy start
         // - 4: enemy finish / base(w/ health)
+
+    if(level === "gameOne"){
+        for(let y = 0; y < 15; y++){
+            for(let x = 0; x < 30; x++){
+                square(x * CELLSIZE, y * CELLSIZE, CELLSIZE);
+            }
+        }
+    }
 }
 
 function enemyWaveFunction(level){
