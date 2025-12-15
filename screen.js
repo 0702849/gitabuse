@@ -67,25 +67,36 @@ function stateToLevelSelect(){
 }
 
 
+
 // -- level state change--
 function gameToOne(){
     if(levelOne.mouseClicked){
         gameState = "gameOne";
+        levelOne.hide();
+        levelTwo.hide();
+        levelThree.hide();
     }
     console.log(gameState);
 }
 function gameToTwo(){
     if(levelTwo.mouseClicked){
         gameState = "gameTwo";
+        levelOne.hide();
+        levelTwo.hide();
+        levelThree.hide();
     }
     console.log(gameState);
 }
 function gameToThree(){
     if(levelThree.mouseClicked){
         gameState = "gameThree";
+        levelOne.hide();
+        levelTwo.hide();
+        levelThree.hide();
     }
     console.log(gameState);
 }
+
 
 
 function keyPressed(){
@@ -123,4 +134,33 @@ function stateFunction(){
         fill("green");
         circle(width/2, width/2 - BUTTONOFFSET, 50);
     }
+}
+
+
+//                                                                      ====== GAME ======
+
+function mapWorks(level){
+    //make the map using a 2d array
+
+    //assign each grid box with a number according what level is picked
+        // - 1: pathway
+        // - 2: placeable ground
+        // - 3: enemy start
+        // - 4: enemy finish / base(w/ health)
+}
+
+function enemyWaveFunction(level){
+    //spawn enemies in waves
+    //use last years project as idea builder
+
+
+    // level one: 15 waves
+    // level two: 20 waves
+    // level three: 30 waves
+
+    //secret level: inf waves
+        //level 2 enemies introduced wave 5
+        //level 3 enemies introduced wave 8
+        //boss enemy every 10 waves
+        //enemy health multiplies by 1.5 every 10 waves
 }
