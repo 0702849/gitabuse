@@ -1,7 +1,5 @@
 //levels and start screens
 
-let currentMap = [];
-
 // -- constants --
 const BUTTONOFFSET = 200;
 const CELLSIZE = 50
@@ -143,6 +141,9 @@ function stateFunction(){
 
 //                                                                      ====== GAME ======
 
+let currentMap;
+
+
 function mapWorks(level){
     //make the map using a 2d array
 
@@ -152,12 +153,17 @@ function mapWorks(level){
         // - 3: enemy start
         // - 4: enemy finish / base(w/ health)
 
+        //if tile value > 4, give the tile no texture
+
     if(level === "gameOne"){
-        for(let y = 0; y < 15; y++){
-            for(let x = 0; x < 30; x++){
-                square(x * CELLSIZE, y * CELLSIZE, CELLSIZE);
-            }
-        }
+        currentMap = [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+                      2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,
+                      3,1,1,1,1,1,1,1,1,2,2,2,2,2,2,1,2,2,2,2,2,2,2,2,2,2,2,1,2,2,2,2,2,2,2,2,2,2,2,
+                      2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,4,
+                      2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+                ]
+        
+        
     }
 }
 
