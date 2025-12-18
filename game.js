@@ -7,8 +7,8 @@
 
 
 function setup() {
+  let cellsize;
   createCanvas(windowWidth, windowHeight);
-
   console.log(gameState);
 
   beginButtons();

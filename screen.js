@@ -2,7 +2,6 @@
 
 // -- constants --
 const BUTTONOFFSET = 200;
-const CELLSIZE = 50
 // -- state variables --
 
 let gameState = "start";
@@ -113,13 +112,11 @@ function stateFunction(){
     // -- menus --
     if(gameState === "start"){
         //start menu
-        fill("yellow")
-        rect(width/2, width/2 - 200, 100);
+
     }
     else if(gameState === "level select"){
         //level select menu
-        fill("red");
-        rect(width/2, width/2 - 200, 50, 30);
+
     }
 
     // -- level vers --
@@ -128,12 +125,10 @@ function stateFunction(){
         mapWorks("gameOne");
     }
     else if(gameState === "gameTwo"){
-        fill("red");
-        circle(width/2, width/2 - BUTTONOFFSET, 50);
+
     }
     else if(gameState === "gameThree"){
-        fill("green");
-        circle(width/2, width/2 - BUTTONOFFSET, 50);
+
     }
 }
 
@@ -154,21 +149,36 @@ function mapWorks(level){
 
         //if tile value > 4, give the tile no texture
 
+    // [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],      row of placeable tiles copypasta
+
+
+    const CELLSIZE = 30;
+
+
     if(level === "gameOne"){
-        currentMap = [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
-                      2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,
-                      3,1,1,1,1,1,1,1,1,2,2,2,2,2,2,1,2,2,2,2,2,2,2,2,2,2,2,1,2,2,2,2,2,2,2,2,2,2,2,
-                      2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,4,
-                      2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+        currentMap = [[2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
+                      [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
+                      [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2],
+                      [3,1,1,1,1,1,1,1,1,2,2,2,2,2,2,1,2,2,2,2,2,2,2,2,2,2,2,1,2,2,2,2,2,2,2,2,2,2,2],
+                      [2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,4],
+                      [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
+                      [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
+                      [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
                 ]
         
-            for(let y = 0; y < 5; y++){
+            for(let y = 0; y < 8; y++){
               for(let x = 0; x < 40; x++){
                     if(currentMap[y][x] === 1) {
-                        fill("black");
+                        fill("brown");
                     }
-                    else if(currentMap[y][x] === 0){
+                    else if(currentMap[y][x] === 2){
                         fill("white");
+                    }
+                    else if(currentMap[y][x] === 3){
+                        fill("green");
+                    }
+                    else if(currentMap[y][x] === 4){
+                        fill("red");
                     }
                     square(x * CELLSIZE, y * CELLSIZE, CELLSIZE);
             }
