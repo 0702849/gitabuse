@@ -124,8 +124,7 @@ function stateFunction(){
 
     // -- level vers --
     else if(gameState === "gameOne"){
-        fill("blue");
-        circle(width/2, width/2 - BUTTONOFFSET, 50);
+
         mapWorks("gameOne");
     }
     else if(gameState === "gameTwo"){
@@ -163,9 +162,20 @@ function mapWorks(level){
                       2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
                 ]
         
-        
+            for(let y = 0; y < 5; y++){
+              for(let x = 0; x < 40; x++){
+                    if(currentMap[y][x] === 1) {
+                        fill("black");
+                    }
+                    else if(currentMap[y][x] === 0){
+                        fill("white");
+                    }
+                    square(x * CELLSIZE, y * CELLSIZE, CELLSIZE);
+            }
+        }
     }
 }
+
 
 function enemyWaveFunction(level){
     //spawn enemies in waves
