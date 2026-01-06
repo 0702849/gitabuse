@@ -35,18 +35,18 @@ function buildMap(){
         map[5][c] = DIRT_TILE;                     // dirt path down the middle
     }
 
-    for(let r = 5; r < GRID_ROWS; r++){
+    for(let r = 5; r < GRID_ROWS - 2; r++){
         map[r][7] = DIRT_TILE;                        // dirt path that goes down
     }
 
     for(let c = 7; c < GRID_COLS; c++){
-        map[GRID_ROWS - 1][c] = DIRT_TILE;        // path makes its way to the right edge
+        map[GRID_ROWS - 2][c] = DIRT_TILE;        // path makes its way to the right edge
     }
 
     map[5][0] = START_TILE;                            // start 
 
     
-    map[GRID_ROWS - 1][GRID_COLS - 1] = END_TILE;      // end 
+    map[GRID_ROWS - 2][GRID_COLS - 1] = END_TILE;      // end 
 
     return map;
 }
@@ -61,9 +61,15 @@ function drawMap(map){
             if(map[r][c] === DIRT_TILE){
                 image(dirtTile, x, y, CELL_SIZE, CELL_SIZE);
             }
+
+            else if(map[r][c] === START_TILE || map[r][c] === END_TILE){
+                image(noTexture, x, y, CELL_SIZE, CELL_SIZE);
+            }
+
             else{
                 image(grassTile, x, y, CELL_SIZE, CELL_SIZE);
             }
+
         }
     }
 }
