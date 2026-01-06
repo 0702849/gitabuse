@@ -1,204 +1,88 @@
 //levels and start screens
 
 // -- constants --
-const BUTTONOFFSET = 200;
+const GRASS_TILE = 0;
+const DIRT_TILE = 1;
+const START_TILE = 2;
+const END_TILE = 3;
+
+// -- normal variables --
+let startPos = null;
+
+let dotX;
+let dotY;
+let dotSpeed = 2;
 // -- state variables --
 
-let gameState = "start";
 
-// -- buttons --
-//use createButton function to make the buttons
-let startButton;
-let levelOne;
-let levelTwo;
-let levelThree;
 
-function beginButtons(){
-    startButton = createButton("start");
-    startButton.position(width/2, width/2);     //put it in the middle of the screen
-    startButton.mouseClicked(stateToLevelSelect);
-}
+function buildMap(){
+    let map = [];
 
-function levelButton(){
-    //create level one button
-    levelOne = createButton("level one");
-    levelOne.position(width/2 - BUTTONOFFSET, width/2);
-    //create level two button
-    levelTwo = createButton("level two");
-    levelTwo.position(width/2,width/2);
-    //create level three button
-    levelThree = createButton("level three");
-    levelThree.position(width/2 + BUTTONOFFSET, width/2);
+    for(let r = 0; r < GRID_ROWS; r++){
+        let row = [];
 
-    //hide them after initialization
-    levelOne.hide();
-    levelTwo.hide();
-    levelThree.hide();
+        for(let c = 0; c < GRID_COLS; c++){
+            row.push(GRASS_TILE);
+        }
+
+        map.push(row);
+    }
+
+
+
+    for(let c = 0; c < 8; c++){
+        map[5][c] = DIRT_TILE;                     // dirt path down the middle
+    }
+
+    for(let r = 5; r < GRID_ROWS; r++){
+        map[r][7] = DIRT_TILE;                        // dirt path that goes down
+    }
+
+    for(let c = 7; c < GRID_COLS; c++){
+        map[GRID_ROWS - 1][c] = DIRT_TILE;        // path makes its way to the right edge
+    }
+
+    map[5][0] = START_TILE;                            // start 
+
     
-    //if clicked change state to "game"
-    levelOne.mouseClicked(gameToOne);
-    levelTwo.mouseClicked(gameToTwo);
-    levelThree.mouseClicked(gameToThree);
-}
+    map[GRID_ROWS - 1][GRID_COLS - 1] = END_TILE;      // end 
 
-function stateToStart(){
-    //when called only show the start button and change state back to start
-    gameState = "start";
-    startButton.show();
-
-    levelOne.hide();
-    levelTwo.hide();
-    levelThree.hide();
-
-    console.log(gameState);
-}
-
-function stateToLevelSelect(){
-    //when start button clicked enter level select menu
-    if(startButton.mouseClicked){
-        gameState = "level select";
-        startButton.hide();
-        levelOne.show();
-        levelTwo.show();
-        levelThree.show();
-    }
-    
-    console.log(gameState);
+    return map;
 }
 
 
+function drawMap(map){
+    for(let r = 0; r < GRID_ROWS; r++){
+        for(let c = 0; c < GRID_COLS; c++){
+            let x = c * CELL_SIZE;
+            let y = r * CELL_SIZE;
 
-// -- level state change--
-function gameToOne(){
-    if(levelOne.mouseClicked){
-        gameState = "gameOne";
-        levelOne.hide();
-        levelTwo.hide();
-        levelThree.hide();
-    }
-    console.log(gameState);
-}
-function gameToTwo(){
-    if(levelTwo.mouseClicked){
-        gameState = "gameTwo";
-        levelOne.hide();
-        levelTwo.hide();
-        levelThree.hide();
-    }
-    console.log(gameState);
-}
-function gameToThree(){
-    if(levelThree.mouseClicked){
-        gameState = "gameThree";
-        levelOne.hide();
-        levelTwo.hide();
-        levelThree.hide();
-    }
-    console.log(gameState);
-}
-
-
-
-function keyPressed(){
-    if(keyCode = 82){
-        //if "r" or "R" key pressed return to "start" state
-        stateToStart();
-    }
-}
-
-
-//what does each state do or call
-function stateFunction(){
-    // -- menus --
-    if(gameState === "start"){
-        //start menu
-
-    }
-    else if(gameState === "level select"){
-        //level select menu
-
-    }
-
-    // -- level vers --
-    else if(gameState === "gameOne"){
-
-        mapWorks("gameOne");
-    }
-    else if(gameState === "gameTwo"){
-
-    }
-    else if(gameState === "gameThree"){
-
-    }
-}
-
-
-//                                                                      ====== GAME ======
-
-let currentMap;
-
-
-function mapWorks(level){
-    //make the map using a 2d array
-
-    //assign each grid box with a number according what level is picked
-        // - 1: pathway
-        // - 2: placeable ground
-        // - 3: enemy start
-        // - 4: enemy finish / base(w/ health)
-
-        //if tile value > 4, give the tile no texture
-
-    // [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],      row of placeable tiles copypasta
-
-
-    const CELLSIZE = 30;
-
-
-    if(level === "gameOne"){
-        currentMap = [[2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
-                      [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
-                      [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2],
-                      [3,1,1,1,1,1,1,1,1,2,2,2,2,2,2,1,2,2,2,2,2,2,2,2,2,2,2,1,2,2,2,2,2,2,2,2,2,2,2],
-                      [2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,4],
-                      [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
-                      [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
-                      [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
-                ]
-        
-            for(let y = 0; y < 8; y++){
-              for(let x = 0; x < 40; x++){
-                    if(currentMap[y][x] === 1) {
-                        fill("brown");
-                    }
-                    else if(currentMap[y][x] === 2){
-                        fill("white");
-                    }
-                    else if(currentMap[y][x] === 3){
-                        fill("green");
-                    }
-                    else if(currentMap[y][x] === 4){
-                        fill("red");
-                    }
-                    square(x * CELLSIZE, y * CELLSIZE, CELLSIZE);
+            if(map[r][c] === DIRT_TILE){
+                image(dirtTile, x, y, CELL_SIZE, CELL_SIZE);
+            }
+            else{
+                image(grassTile, x, y, CELL_SIZE, CELL_SIZE);
             }
         }
     }
 }
 
 
-function enemyWaveFunction(level){
-    //spawn enemies in waves
-    //use last years project as idea builder
+function drawSpawnDot(map) {
+  for (let r = 0; r < GRID_ROWS; r++) {
+    for (let c = 0; c < GRID_COLS; c++) {
 
+      if (map[r][c] === START_TILE) {
+        let x = c * CELL_SIZE + CELL_SIZE / 2;
+        let y = r * CELL_SIZE + CELL_SIZE / 2;
 
-    // level one: 15 waves
-    // level two: 20 waves
-    // level three: 30 waves
+        fill(255, 255, 0);
+        noStroke();
+        circle(x, y, 20);
 
-    //secret level: inf waves
-        //level 2 enemies introduced wave 5
-        //level 3 enemies introduced wave 8
-        //boss enemy every 10 waves
-        //enemy health multiplies by 1.5 every 10 waves
+        return;
+      }
+    }
+  }
 }
