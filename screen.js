@@ -12,6 +12,7 @@ let startPos = null;
 let dotX;
 let dotY;
 let dotSpeed = 2;
+
 // -- state variables --
 
 
@@ -31,25 +32,27 @@ function buildMap(){
 
 
 
-    for(let c = 0; c < 8; c++){
+    for(let c = 0; c < 6; c++){
         map[5][c] = DIRT_TILE;                     // dirt path down the middle
     }
 
+
     for(let r = 5; r < GRID_ROWS - 2; r++){
-        map[r][7] = DIRT_TILE;                        // dirt path that goes down
+        map[r][5] = DIRT_TILE;                        // dirt path that goes down
     }
 
-    for(let c = 7; c < GRID_COLS; c++){
-        map[GRID_ROWS - 2][c] = DIRT_TILE;        // path makes its way to the right edge
+
+    for(let c = 6; c < GRID_COLS; c++){
+        map[GRID_ROWS - 3][c] = DIRT_TILE;        // path makes its way to the right edge
     }
 
-    map[5][0] = START_TILE;                            // start 
 
-    
-    map[GRID_ROWS - 2][GRID_COLS - 1] = END_TILE;      // end 
+    map[5][0] = START_TILE;                            // start     
+    map[GRID_ROWS - 3][GRID_COLS - 1] = END_TILE;      // end 
 
     return map;
 }
+
 
 
 function drawMap(map){
@@ -73,6 +76,7 @@ function drawMap(map){
         }
     }
 }
+
 
 
 function drawSpawnDot(map) {
