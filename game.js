@@ -25,11 +25,15 @@ function preload(){
 
 function setup() {
   createCanvas(GRID_COLS * CELL_SIZE, GRID_ROWS * CELL_SIZE);
-  currentMap = buildMap();
+  currentMap = buildMap(1);
 }
 
 function draw() {
   background(220);
   drawMap(currentMap);
   drawSpawnDot(currentMap);
+}
+
+function mouseClicked(){
+  spawnATower();
 }

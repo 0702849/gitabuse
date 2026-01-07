@@ -17,40 +17,46 @@ let dotSpeed = 2;
 
 
 
-function buildMap(){
-    let map = [];
+function buildMap(n){
 
-    for(let r = 0; r < GRID_ROWS; r++){
-        let row = [];
+    if(n === 1){
+        let map = [];
 
-        for(let c = 0; c < GRID_COLS; c++){
-            row.push(GRASS_TILE);
+        for(let r = 0; r < GRID_ROWS; r++){
+            let row = [];
+
+            for(let c = 0; c < GRID_COLS; c++){
+                row.push(GRASS_TILE);
+            }
+
+            map.push(row);
         }
 
-        map.push(row);
+
+
+        for(let c = 0; c < 6; c++){
+            map[5][c] = DIRT_TILE;                     // dirt path down the middle
+        }
+
+
+        for(let r = 5; r < GRID_ROWS - 2; r++){
+            map[r][5] = DIRT_TILE;                        // dirt path that goes down
+        }
+
+
+        for(let c = 6; c < GRID_COLS; c++){
+            map[GRID_ROWS - 3][c] = DIRT_TILE;        // path makes its way to the right edge
+        }
+
+
+        map[5][0] = START_TILE;                            // start     
+        map[GRID_ROWS - 3][GRID_COLS - 1] = END_TILE;      // end 
+
+        return map;
     }
-
-
-
-    for(let c = 0; c < 6; c++){
-        map[5][c] = DIRT_TILE;                     // dirt path down the middle
+    else if(n === 2){
+        return;
     }
-
-
-    for(let r = 5; r < GRID_ROWS - 2; r++){
-        map[r][5] = DIRT_TILE;                        // dirt path that goes down
-    }
-
-
-    for(let c = 6; c < GRID_COLS; c++){
-        map[GRID_ROWS - 3][c] = DIRT_TILE;        // path makes its way to the right edge
-    }
-
-
-    map[5][0] = START_TILE;                            // start     
-    map[GRID_ROWS - 3][GRID_COLS - 1] = END_TILE;      // end 
-
-    return map;
 }
 
 
@@ -91,8 +97,30 @@ function drawSpawnDot(map) {
         noStroke();
         circle(x, y, 20);
 
-        return;
       }
     }
   }
+}
+
+let currentTower = 1;
+
+function keyPressed(){
+    if(keyCode === 49){
+        currentTower = 1;
+    }
+    if(keyCode === 50){
+        currentTower = 2;
+    }
+}
+
+function spawnATower(){
+    if(currentTower === 1){
+        fill("blue");
+    }
+    else if(currentTower === 2){
+        fill("red");
+    }
+    circle(mouseX, mouseY, 20);
+
+    return;
 }
