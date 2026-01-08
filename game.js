@@ -33,7 +33,3 @@ function draw() {
   drawMap(currentMap);
   drawSpawnDot(currentMap);
 }
-
-function mouseClicked(){
-  spawnATower();
-}

@@ -102,25 +102,4 @@ function drawSpawnDot(map) {
   }
 }
 
-let currentTower = 1;
 
-function keyPressed(){
-    if(keyCode === 49){
-        currentTower = 1;
-    }
-    if(keyCode === 50){
-        currentTower = 2;
-    }
-}
-
-function spawnATower(){
-    if(currentTower === 1){
-        fill("blue");
-    }
-    else if(currentTower === 2){
-        fill("red");
-    }
-    circle(mouseX, mouseY, 20);
-
-    return;
-}
