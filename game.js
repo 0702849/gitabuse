@@ -31,5 +31,11 @@ function setup() {
 function draw() {
   background(220);
   drawMap(currentMap);
-  drawSpawnDot(currentMap);
+  //drawSpawnDot(currentMap);
+  //thatDotThatMoves(mouseX, mouseY);
+}
+
+
+function mouseClicked(){
+  spawnTheTower(mouseX, mouseY);
 }

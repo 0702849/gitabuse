@@ -1,6 +1,8 @@
 //tower logic
 //two offensive towers(ranged, melee), econ tower(money production), buff tower(defense/offense buff, does not work with econ tower)
 
+let towerClass = 1;
+
 class Offense{
     constructor(x, y, damage, range){
         this.x = x;
@@ -40,4 +42,27 @@ class Buff{
     update(){}
     display(){}
     takeDamage(){}
+}
+
+
+function keyPressed(){
+    if(keyCode === 49){
+        towerClass = 1;
+    }
+    else if(keyCode === 50){
+        towerClass = 2;
+    }
+}
+
+function spawnTheTower(x, y){
+    if(towerClass === 1){
+        fill("red");
+    }
+    else if(towerClass === 2){
+        fill("green");
+    }
+
+    circle(x, y, 30);
+    console.log(x);
+    console.log(y);
 }
