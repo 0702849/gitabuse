@@ -54,7 +54,7 @@ function keyPressed(){
     }
 }
 
-function spawnTheTower(x, y){
+function spawnTheTower(){
     if(towerClass === 1){
         fill("red");
     }
@@ -62,7 +62,13 @@ function spawnTheTower(x, y){
         fill("green");
     }
 
-    circle(x, y, 30);
+
+    let _x = mouseX;
+    let _y = mouseY;
+    for(let timer = 1000; timer > 0; timer -= 1){
+        circle(_x, _y, 30);
+    }
     console.log(x);
     console.log(y);
+
 }

@@ -37,5 +37,5 @@ function draw() {
 
 
 function mouseClicked(){
-  spawnTheTower(mouseX, mouseY);
+  spawnTheTower();
 }

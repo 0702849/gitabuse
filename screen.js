@@ -18,7 +18,6 @@ let dotSpeed = 2;
 
 
 function buildMap(n){
-
     if(n === 1){
         let map = [];
 
@@ -101,9 +100,16 @@ function drawMap(map){
 //   }
 // }
  
+
+
+
+
+
 function thatDotThatMoves(x, y){
+    let newX = x;
+    let newY = y;
     fill("red");
-    circle(x, y, 20);
+    circle(newX, newY, 20);
     console.log(x);
     console.log(y);
 }
