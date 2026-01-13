@@ -1,8 +1,6 @@
 //tower logic
 //two offensive towers(ranged, melee), econ tower(money production), buff tower(defense/offense buff, does not work with econ tower)
 
-let towerClass = 1;
-
 class Offense{
     constructor(x, y, damage, range){
         this.x = x;
@@ -13,9 +11,34 @@ class Offense{
     }
 
     update(){}
-    display(){}
-    fire(){}
+    display(){
+        noStroke();
+        fill("red");
+        circle(x, y, 60);
+    }
+    fire(cooldown){}
     upgrade(){}
+}
+
+class OffenseTwo extends Offense{
+    constructor(x, y, damage, range){
+        super(x, y, damage);
+        this.range = range;
+    }
+    update(){
+        super.update;
+    }
+    display(){
+        fill("blue");
+        noStroke();
+        triangle(x, y+70, x-40, y, x+40, y);
+    }
+    fire(cooldown){
+        super.fire;
+    }
+    upgrade(){
+        super.upgrade;
+    }
 }
 
 class Econ{
@@ -32,7 +55,7 @@ class Econ{
 }
 
 class Buff{
-    constructor(gridX, gridY, health){
+    constructor(gridX, gridY){
         //CANNOT UPGRADE
         this.x = gridX;
         this.y = gridY;
@@ -41,34 +64,14 @@ class Buff{
 
     update(){}
     display(){}
+    Buff(){}
+}
+class DefenseBuff extends Buff{
+    constructor(gridX, gridY, health){
+        super(gridX, gridY);
+        this.health = health;
+    }
+    update(){}
+    display(){}
     takeDamage(){}
-}
-
-
-function keyPressed(){
-    if(keyCode === 49){
-        towerClass = 1;
-    }
-    else if(keyCode === 50){
-        towerClass = 2;
-    }
-}
-
-function spawnTheTower(){
-    if(towerClass === 1){
-        fill("red");
-    }
-    else if(towerClass === 2){
-        fill("green");
-    }
-
-
-    let _x = mouseX;
-    let _y = mouseY;
-    for(let timer = 1000; timer > 0; timer -= 1){
-        circle(_x, _y, 30);
-    }
-    console.log(x);
-    console.log(y);
-
 }

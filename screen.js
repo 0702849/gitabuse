@@ -84,32 +84,19 @@ function drawMap(map){
 
 
 
-// function drawSpawnDot(map) {
-//   for (let r = 0; r < GRID_ROWS; r++) {
-//     for (let c = 0; c < GRID_COLS; c++) {
+function drawSpawnDot(map) {
+  for (let r = 0; r < GRID_ROWS; r++) {
+    for (let c = 0; c < GRID_COLS; c++) {
 
-//       if (map[r][c] === START_TILE) {
-//         let x = c * CELL_SIZE + CELL_SIZE / 2;
-//         let y = r * CELL_SIZE + CELL_SIZE / 2;
+      if (map[r][c] === START_TILE) {
+        let x = c * CELL_SIZE + CELL_SIZE / 2;
+        let y = r * CELL_SIZE + CELL_SIZE / 2;
 
-//         fill(255, 255, 0);
-//         noStroke();
-//         circle(x, y, 20);
-//       }
-//     }
-//   }
-// }
- 
-
-
-
-
-
-function thatDotThatMoves(x, y){
-    let newX = x;
-    let newY = y;
-    fill("red");
-    circle(newX, newY, 20);
-    console.log(x);
-    console.log(y);
+        fill(255, 255, 0);
+        noStroke();
+        circle(x, y, 20);
+      }
+    }
+  }
 }
+ 
