@@ -81,7 +81,7 @@ function setTheCheckPoints() {
 
 
 function enemyPathFind(map) {
-    setTheCheckPoints(); //make sure enemies are moving along the right checkpoints
+    setTheCheckPoints(); //make sure enemies are moving along the right checkpoints/set them
     
     // draw the debug checkpoints(DONT FORGET TO COMMENT OUT)
     fill(0, 255, 255);
