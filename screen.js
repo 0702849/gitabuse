@@ -9,10 +9,6 @@ const END_TILE = 3;
 // -- normal variables --
 let startPos = null;
 
-let dotX;
-let dotY;
-let dotSpeed = 2;
-
 // -- state variables --
 
 
@@ -31,8 +27,6 @@ function buildMap(n){
             map.push(row);
         }
 
-
-
         for(let c = 0; c < 6; c++){
             map[5][c] = DIRT_TILE;                     // dirt path down the middle
         }
@@ -48,7 +42,7 @@ function buildMap(n){
         }
 
 
-        map[5][0] = START_TILE;                            // start     
+        map[5][0] = START_TILE;                            // start
         map[GRID_ROWS - 3][GRID_COLS - 1] = END_TILE;      // end 
 
         return map;
@@ -81,22 +75,3 @@ function drawMap(map){
         }
     }
 }
-
-
-
-function drawSpawnDot(map) {
-  for (let r = 0; r < GRID_ROWS; r++) {
-    for (let c = 0; c < GRID_COLS; c++) {
-
-      if (map[r][c] === START_TILE) {
-        let x = c * CELL_SIZE + CELL_SIZE / 2;
-        let y = r * CELL_SIZE + CELL_SIZE / 2;
-
-        fill(255, 255, 0);
-        noStroke();
-        circle(x, y, 20);
-      }
-    }
-  }
-}
- 

@@ -31,8 +31,7 @@ function setup() {
 function draw() {
   background(220);
   drawMap(currentMap);
-  drawSpawnDot(currentMap);
-  //thatDotThatMoves(mouseX, mouseY);
+  enemyPathFind(currentMap);
 }
 
 
