@@ -31,10 +31,11 @@ function setup() {
 function draw() {
   background(220);
   drawMap(currentMap);
-  enemyPathFind(currentMap);
+  everythingThatHasToDoWithEnemies(currentMap);
+  drawTowers(enemies);
 }
 
 
-function mouseClicked(){
-  
+function mousePressed(){
+  placeTower(currentMap);
 }
