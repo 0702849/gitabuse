@@ -2,6 +2,8 @@
 
 //three enemy types(weak, average, strong), one boss type(tower stun every 10-20 seconds while on the map)
 
+let debugIsOn = false;
+
 let checkPoints = [];
 let checkPointIndex = 0;
 
@@ -31,7 +33,9 @@ let waitingForNextWave = false;
 
 let gameCompleted = false;
 
-
+let money = 200;
+const OFFENSE_BONUS = 5;
+const KILL_REWARD = 10;
 
 
 class Enemy {
@@ -83,7 +87,7 @@ class Enemy {
         noStroke();
         circle(this.x, this.y, this.size);
 
-        // HP bar (optional but very helpful)
+        // HP bar
         let barW = 26;
         let barH = 5;
         let pct = this.hp / this.maxHp;
@@ -99,6 +103,7 @@ class Enemy {
     }
 
     takeDamage(amount) {
+        money += OFFENSE_BONUS;
         this.hp -= amount;
     }
 }    
@@ -131,13 +136,17 @@ function everythingThatHasToDoWithEnemies(map) {
   drawHUD();
 }
 
+
+
 function updateEnemiesAndWaves(map) {
 
-  // debug checkpoints (comment out later)
-  fill(0, 255, 255);
-  noStroke();
-  for (let i = 0; i < checkPoints.length; i++) {
-    circle(checkPoints[i].x, checkPoints[i].y, 10);
+  // debug checkpoints
+  if(debugIsOn === true){
+    fill(0, 255, 255);
+    noStroke();
+    for (let i = 0; i < checkPoints.length; i++) {
+      circle(checkPoints[i].x, checkPoints[i].y, 10);
+    }
   }
 
   // update, draw, and remove enemies
@@ -145,8 +154,15 @@ function updateEnemiesAndWaves(map) {
     enemies[i].update();
     enemies[i].draw();
 
+
+    //if dead reward with money
+    if(enemies[i].hp <= 0){
+      money += KILL_REWARD
+      enemies.splice(i, 1);
+      continue;
+    }
     // remove if reached end OR died
-    if (enemies[i].finished || enemies[i].hp <= 0) {
+    if (enemies[i].finished) {
       enemies.splice(i, 1);
     }
   }
@@ -207,6 +223,8 @@ function drawHUD() {
   text("Wave: " + waveNumber, 10, 20);
   text("On screen: " + enemies.length, 110, 20);
   text("Left: " + enemiesLeftToSpawn, 250, 20);
+  text("Money: " + money, 360, 20);
+  text("for debug mode press 'p'", 10, height - 20);
 
   // countdown
   if (isWaveCountdown) {
@@ -214,7 +232,7 @@ function drawHUD() {
     secondsLeft = max(0, secondsLeft);
 
     textAlign(CENTER, CENTER);
-    text("Next wave in: " + nf(secondsLeft, 1, 1) + "s", width / 2, 20);
+    text("Next wave in: " + nf(secondsLeft, 1, 1) + "s", width/2, 50);
   }
 
   // game complete message
@@ -227,6 +245,7 @@ function drawHUD() {
     textAlign(CENTER, CENTER);
     text("All waves completed!", width / 2, height / 2);
   }
+
 
   textAlign(CENTER, CENTER); // reset
 }

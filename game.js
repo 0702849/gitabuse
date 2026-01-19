@@ -39,3 +39,9 @@ function draw() {
 function mousePressed(){
   placeTower(currentMap);
 }
+
+function keyPressed(){
+  if(keyCode === 80){
+    debugIsOn = !debugIsOn;
+  }
+}

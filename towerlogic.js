@@ -2,6 +2,9 @@
 //two offensive towers(ranged, melee), econ tower(money production), buff tower(defense/offense buff, does not work with econ tower)
 
 let towers = [];
+const TOWER_COST = 50;
+
+
 
 class Offense {
   constructor(x, y, damage, range) {
@@ -26,7 +29,7 @@ class Offense {
   upgrade() {}
 }
 
-// === OFFENSE TOWER VARIANT ===
+// === OFFENSE TOWER DOS ===
 class OffenseTwo extends Offense {
   constructor(x, y, damage, range) {
     super(x, y, damage, range);
@@ -118,13 +121,18 @@ function placeTower(map) {
 
     let pos = tileCenter(tile.r, tile.c);
 
-    let tower = new Offense(pos.x, pos.y, 1, 150);
-
-    towers.push({
+    let tower = new Offense(pos.x, pos.y, 2, 180);
+    if(money < TOWER_COST || towers.length === 5){
+      return;
+    }
+    else{
+      money -= TOWER_COST;
+      towers.push({
         r: tile.r,
         c: tile.c,
         tower: tower
-    });
+      });
+    }
 }
 
 function drawTowers(enemiesList) {
@@ -134,10 +142,13 @@ function drawTowers(enemiesList) {
         // draw tower
         t.display();
 
-        // noFill();
-        // stroke(0, 150);
-        // circle(t.x, t.y, t.range * 2);      //comment out maybe
-        // noStroke();
+
+        if(debugIsOn === true){
+          noFill();
+          stroke(0, 150);
+          circle(t.x, t.y, t.range * 2);      //comment out maybe
+          noStroke();
+        }
 
         // find target
         let target = getClosestEnemyInRange(t.x, t.y, t.range, enemiesList);
