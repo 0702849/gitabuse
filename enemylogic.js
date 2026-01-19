@@ -33,7 +33,7 @@ let waitingForNextWave = false;
 
 let gameCompleted = false;
 
-let money = 200;
+let money = 50;
 const OFFENSE_BONUS = 5;
 const KILL_REWARD = 10;
 
